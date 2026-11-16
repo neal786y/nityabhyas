@@ -16,8 +16,11 @@ import pathlib
 import re
 import sys
 
-# The final address. Change this one line when the domain is bought.
-SITE = "https://www.nityabhyas.in"
+# The public address. GitHub Pages (project site) until a domain is bought; then change this one line,
+# add a CNAME file and set the domain in Settings → Pages. GitHub redirects the old github.io addresses
+# (path included) to the domain, so links already inside the app keep working. Never rename the repo.
+SITE = "https://neal786y.github.io/nityabhyas"
+BASE = re.sub(r"^https?://[^/]+", "", SITE)  # "/nityabhyas" on github.io, "" on a custom domain
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PARTIALS = ROOT / "tools" / "partials"
@@ -68,6 +71,27 @@ def render(name, lang, url, en, hi, link, en_link, hi_link):
     return text.strip("\n")
 
 
+def relativize(text, page):
+    """Every href/src that starts with "/" becomes relative to the page, so the same files work on github.io
+    (a sub-folder), on a custom domain and in a local preview. The 404 page is the exception: GitHub serves it
+    at whatever missing address was asked for, so its links are absolute from the site's base path."""
+    depth = len(page.relative_to(ROOT).parts) - 1
+    prefix = "../" * depth
+
+    def fix(m):
+        attr, url = m.group(1), m.group(2)
+        if url.startswith("//"):
+            return m.group(0)
+        if page.name == "404.html":
+            if BASE and (url == BASE or url.startswith(BASE + "/")):
+                return m.group(0)  # already absolute from the base path
+            return f'{attr}="{BASE}{url}"'
+        rel = prefix + url[1:]
+        return f'{attr}="{rel or "./"}"'
+
+    return re.sub(r'\b(href|src)="(/[^"]*)"', fix, text)
+
+
 def sync(check=False):
     stale, entries = [], []
     for path in pages():
@@ -84,6 +108,7 @@ def sync(check=False):
             pad = indent.group(1) if indent else ""
             body = "\n".join(pad + line if line else line for line in render(name, lang, url, en, hi, link, en_link, hi_link).split("\n"))
             updated = pattern.sub(lambda m: f"{m.group(1)}\n{body}\n{pad}<!-- /@{name} -->", updated, count=1)
+        updated = relativize(updated, path)
         if updated != original:
             stale.append(path.relative_to(ROOT).as_posix())
             if not check:
