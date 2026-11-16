@@ -29,6 +29,11 @@ The app's design system (Rozabhyas repo, `docs/DESIGN.md`): the *Jamun* palette 
 - Legal texts change only together with the app's Data safety answers (source drafts: Rozabhyas `docs/legal/`).
 - No inline styles or scripts: the Content-Security-Policy allows only this site's own files.
 
+## Check every link
+```
+python3 tools/linkcheck.py https://neal786y.github.io/nityabhyas    # after each push (exit 1 = broken links)
+```
+
 ## Preview locally
 ```
 python3 -m http.server 8765    # then open http://127.0.0.1:8765/  (add ?theme=dark to preview dark mode)
