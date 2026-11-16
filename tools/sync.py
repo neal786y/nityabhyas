@@ -87,7 +87,10 @@ def relativize(text, page):
                 return m.group(0)  # already absolute from the base path
             return f'{attr}="{BASE}{url}"'
         rel = prefix + url[1:]
-        return f'{attr}="{rel or "./"}"'
+        if not rel or rel.startswith("#"):
+            # "/" or "/#section" from a page in the root folder: the home page, not this page's own fragment.
+            rel = "./" + rel
+        return f'{attr}="{rel}"'
 
     return re.sub(r'\b(href|src)="(/[^"]*)"', fix, text)
 
