@@ -42,6 +42,9 @@ def urls_for(path):
     if base == "index.html":
         en_link, hi_link = "/", "/hi/"
     clean = "" if base == "index.html" else base[: -len(".html")]
+    if base == "404.html":
+        # One 404 page for the whole site (GitHub Pages serves it for any missing path): its switch goes home.
+        return "en", "/404", "/hi/", "/404.html", "/hi/"
     return ("hi" if hindi else "en"), "/" + clean, "/hi/" + clean, en_link, hi_link
 
 

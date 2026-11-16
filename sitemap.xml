@@ -4,8 +4,32 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/"/>
   </url>
+  <url><loc>https://www.nityabhyas.in/hi/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/privacy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/privacy"/>
+  </url>
+  <url><loc>https://www.nityabhyas.in/hi/support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/support"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/support"/>
+  </url>
+  <url><loc>https://www.nityabhyas.in/hi/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/terms"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/terms"/>
+  </url>
   <url><loc>https://www.nityabhyas.in/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/"/>
+  </url>
+  <url><loc>https://www.nityabhyas.in/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/privacy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/privacy"/>
+  </url>
+  <url><loc>https://www.nityabhyas.in/support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/support"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/support"/>
+  </url>
+  <url><loc>https://www.nityabhyas.in/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nityabhyas.in/terms"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.nityabhyas.in/hi/terms"/>
   </url>
 </urlset>
